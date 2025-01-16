@@ -1,4 +1,6 @@
 using AmazonSimulatorApp.Components;
+using AmazonSimulatorApp.Data.Repositories;
+using AmazonSimulatorApp.Services;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
 
@@ -24,6 +26,12 @@ namespace AmazonSimulatorApp
                 .AddInteractiveServerComponents();
 
             builder.Services.AddMudServices();
+
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+            builder.Services.AddScoped<IProductService, ProductService>();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
