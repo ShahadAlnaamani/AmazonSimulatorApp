@@ -17,8 +17,18 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            <!-- Centered search input -->
+            <MudTextField T="string"
+                          StartIcon="Icons.Material.Filled.Search"
+                          Placeholder="Search..."
+                          Variant="Variant.Outlined"
+                          Color="Color.Primary"
+                          Class="search-input" />
+
+            <!-- Signin button -->
+            <MudButton Variant="Variant.Outlined">Signin</MudButton>
         </div>
+
 
         <article class="content px-4">
             @Body
@@ -31,3 +41,4 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
