@@ -49,3 +49,55 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+.card1 {
+    width: 350px; /* Set the width */
+    height: 350px; /* Set the height equal to the width for a square shape */
+    object-fit: cover; /* Ensures the image covers the entire area without stretching */
+}
+
+/* Make the top-row a flex container */
+.top-row {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    gap: 20px; /* Add some space between the search box and button */
+}
+
+/* Style for the search input to make it smaller */
+.search-input {
+    width: 200px; /* Set a fixed width for the search box */
+    height: 40px; /* Set a fixed height */
+}
+
+/* Container for the cards with flexbox */
+.card-container {
+    display: flex; /* Flex container to align cards */
+    flex-wrap: wrap; /* Allow items to wrap into multiple rows */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center cards horizontally */
+    margin: 20px; /* Add margin around the container */
+}
+
+/* Style for individual cards */
+.card1, .card2, .card3, .card4 {
+    width: 200px; /* Fixed width for each card */
+    height: 350px; /* Fixed height for each card */
+}
+
+    /* Optional: Styling for images inside the cards */
+    .card1 .mud-card-media,
+    .card2 .mud-card-media,
+    .card3 .mud-card-media,
+    .card4 .mud-card-media {
+        width: 100%; /* Make image fill the width of the card */
+        height: 200px; /* Fixed height for the image */
+        object-fit: cover; /* Ensure image fills area without stretching */
+    }
+
+    /* Optional: Styling for content */
+    .card1 .mud-card-content,
+    .card2 .mud-card-content,
+    .card3 .mud-card-content,
+    .card4 .mud-card-content {
+        padding: 10px;
+    }

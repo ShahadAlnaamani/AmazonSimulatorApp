@@ -1,0 +1,76 @@
+﻿@page "/AllProds"
+@using AmazonSimulatorApp.Data;
+@using AmazonSimulatorApp.Services;
+@using Microsoft.AspNetCore.Components
+@using System.Globalization;
+
+@inject IProductService Productservice
+
+<EditForm Model="this" OnValidSubmit="Search">
+    <div class="mb-3">
+        <label for="productName">Product Name</label>
+        <InputText id="productName" class="form-control" @bind-Value="SearchValue" />
+    </div>
+
+    <MudSlider @bind-Value="MaxPrice" Min="0" Max="1000" Color="Color.Info">MaxPrice: @MaxPrice.ToString()</MudSlider>
+
+    <MudSelect T="string" MultiSelection="true" SelectAll="true" SelectAllText="Select all department" HelperText="@value" @bind-Value="value" @bind-SelectedValues="options" MultiSelectionTextFunc="@(new Func<List<string>, string>(GetMultiSelectionText))" Label="Department" AdornmentIcon="@Icons.Material.Filled.AutoStories">
+        @foreach (var dept in Departments)
+        {
+            <MudSelectItem T="string" Value="@dept">@dept</MudSelectItem>
+        }
+    </MudSelect>
+
+    <button type="submit" class="btn" style="background-color: #17a2b8; color: white;">Search</button>
+</EditForm>
+
+
+
+<p></p>
+<h3>Search Results</h3>
+@if (filteredProducts.Any())
+{
+    <ul>
+        @foreach (var product in filteredProducts)
+        {
+            <li>@product.Name - @product.Price</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No products found.</p>
+}
+
+@code {
+    private string SearchValue { get; set; }
+    private List<Product> filteredProducts { get; set; } = new List<Product>();
+
+    public int MaxPrice = 1000;
+
+    private  void Search()
+    {
+        // Call ProductService to get the filtered products based on SearchValue
+        filteredProducts = Productservice.GetProducts(0, 10, null, MaxPrice, SearchValue);
+
+        // Optionally, display a message if no products are found
+        if (!filteredProducts.Any())
+        {
+            Console.WriteLine("No products found.");
+        }
+    }
+
+    //Filter by category
+    private string value { get; set; } = "Nothing selected";
+    private IEnumerable<string> options { get; set; } = new HashSet<string>() { };
+
+    private string[] Departments =
+    {
+        "Books", "Shoes", "Clothes", "Makeup", "Electronics"
+    };
+
+    private string GetMultiSelectionText(List<string> selectedValues)
+    {
+        return $"{selectedValues.Count} department{(selectedValues.Count > 1 ? "s have" : " has")} been selected";
+    }
+}

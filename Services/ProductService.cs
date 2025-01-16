@@ -4,7 +4,7 @@ using AmazonSimulatorApp.Data;
 
 namespace AmazonSimulatorApp.Services
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
         private readonly IProductRepository _productrepository;
 
@@ -29,12 +29,12 @@ namespace AmazonSimulatorApp.Services
 
         public int UpdateProduct(ProductInDTO product, int SellerID, string Role)
         {
-            Product prod = new Product(); 
+            Product prod = new Product();
 
             try
             {
                 //validating - kicks out anyone that is not permited  
-                 prod = _productrepository.GetProductByName(product.Name);
+                prod = _productrepository.GetProductByName(product.Name);
 
                 if (Role.ToLower() == "seller")
                 {
