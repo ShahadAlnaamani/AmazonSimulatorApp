@@ -1,0 +1,35 @@
+﻿@page "/login"
+
+@using AmazonSimulatorApp.Data
+@using AmazonSimulatorApp.Services
+
+@inject NavigationManager Navigation
+@inject IUserService UserService
+
+@code {
+    private string Email;
+    private string Password;
+    private string Message;
+
+    private async Task LoginUser()
+    {
+        var user = await UserService.LoginUserAsync(Email, Password);
+
+        if (user == null)
+        {
+            Message = "Login failed. Please check your credentials.";
+            return;
+        }
+
+        Message = "Login successful!";
+        Navigation.NavigateTo("/");
+    }
+}
+<h3>Login</h3>
+<p>@Message</p>
+<input @bind="Email" placeholder="Email" />
+<input @bind="Password" type="password" placeholder="Password" />
+<button @onclick="LoginUser">Login</button>
+
+
+

@@ -11,7 +11,7 @@ namespace AmazonSimulatorApp.Data
         public string Email { get; set; }
         public bool IsVerified { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }
+        public string Role { get; set; } // "Client" OR "Seller"
         public bool IsActive { get; set; }
         // Navigation Properties
         public virtual ICollection<Client> Clients { get; set; }
