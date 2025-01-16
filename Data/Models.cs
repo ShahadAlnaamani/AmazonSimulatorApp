@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace AmazonSimulatorApp.Data
 {
@@ -62,6 +63,9 @@ namespace AmazonSimulatorApp.Data
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
+        [Range(1, 5)]
+        [DefaultValue(5)]
+        public int Rating { get; set; }
         // Navigation Properties
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<ProductReview> ProductReviews { get; set; }
