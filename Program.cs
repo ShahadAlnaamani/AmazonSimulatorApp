@@ -21,6 +21,9 @@ namespace AmazonSimulatorApp
 
                 );
 
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
@@ -33,6 +36,8 @@ namespace AmazonSimulatorApp
 
 
             var app = builder.Build();
+           
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

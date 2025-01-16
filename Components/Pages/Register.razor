@@ -1,0 +1,53 @@
+﻿@page "/register"
+@using AmazonSimulatorApp.Data
+@using AmazonSimulatorApp.Services
+@inject NavigationManager Navigation
+@inject IUserService UserService
+
+@code {
+    private string Username;
+    private string Email;
+    private string Password;
+    private string Role = "Client";
+    private string Message;
+
+    private async Task RegisterUser()
+    {
+        var newUser = new User
+            {
+                Name = Username,
+                Email = Email,
+                Password = Password,
+                Role = Role
+            };
+
+        Message = await UserService.RegisterUserAsync(newUser);
+    }
+}
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <form style="width: 300px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); background: #fff; text-align: center;">
+        <h3>Register a New Account</h3>
+
+        <p style="color: red;">@Message</p>
+
+        <div style="text-align: left;">
+            <label for="username">Username</label>
+            <input id="username" @bind="Username" placeholder="Enter username" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;" />
+
+            <label for="email">Email</label>
+            <input id="email" @bind="Email" type="email" placeholder="Enter email" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;" />
+
+            <label for="password">Password</label>
+            <input id="password" @bind="Password" type="password" placeholder="Enter password" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;" />
+
+            <label for="role">Role</label>
+            <select id="role" @bind="Role" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="Client">Client</option>
+                <option value="Seller">Seller</option>
+            </select>
+        </div>
+
+        <button @onclick="RegisterUser" style="width: 100%; padding: 10px; margin-top: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Register</button>
+    </form>
+</div>
+
