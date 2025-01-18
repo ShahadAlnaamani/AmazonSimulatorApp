@@ -27,17 +27,17 @@
         <label for="productDescription">Description</label>
         <InputTextArea id="productDescription" class="form-control" @bind-Value="newProduct.Description" />
     </div>
-@* 
-    <div class="mb-3">
-        <label for="CategoryID">Category ID</label>
-        <InputTextArea id="CategoryID" class="form-control" @bind-Value="newProduct.CatID" />
-    </div> *@
 
-@*     <div class="mb-3">
-        <label for="sellerID">Seller ID</label>
-        <InputTextArea id="sellerID" class="form-control" @bind-Value="newProduct.SellerID" />
-    </div> 
- *@
+    <div class="mb-3">
+        <label for="productCategory">Category ID</label>
+        <InputNumber id="productCategory" class="form-control" @bind-Value="newProduct.CatID" />
+    </div>
+
+    <div class="mb-3">
+        <label for="productSeller">Seller ID</label>
+        <InputNumber id="productSeller" class="form-control" @bind-Value="newProduct.SellerID" />
+    </div>
+
     <button type="submit" class="btn btn-primary">Add Product</button>
 </EditForm>
 

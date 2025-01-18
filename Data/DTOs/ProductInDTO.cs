@@ -8,6 +8,7 @@ namespace AmazonSimulatorApp.Data.DTOs
         [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Description { get; set; }
         public int CatID { get; set; }
         public int SellerID { get; set; }
